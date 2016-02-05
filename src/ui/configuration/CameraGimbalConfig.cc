@@ -239,11 +239,12 @@ void CameraGimbalConfig::requestParameterUpdate()
         m_cameraParams << function << min << max << trim << rev << dz;
     }
 
-    m_cameraParams << "MNT_RETRACT_X"
+    m_cameraParams
+            << "MNT_RETRACT_X"
             << "MNT_RETRACT_Y"
             << "MNT_RETRACT_Z"
-            << "MNT_NEUTRAL_X"
 
+            << "MNT_NEUTRAL_X"
             << "MNT_NEUTRAL_Y"
             << "MNT_NEUTRAL_Z"
 
@@ -253,6 +254,13 @@ void CameraGimbalConfig::requestParameterUpdate()
 
             << "MNT_STAB_TILT"
             << "MNT_STAB_PAN"
+            << "MNT_STAB_ROLL"
+
+            << "CAM_DURATION"
+            << "CAM_SERVO_OFF"
+            << "CAM_SERVO_ON"
+            << "CAM_TRIGG_DIST"
+            << "CAM_TRIGG_TYPE"
 
             << "MNT_RC_IN_ROLL"
             << "MNT_ANGMIN_ROL"
@@ -533,6 +541,35 @@ void CameraGimbalConfig::refreshMountParameters(QString mount, QString parameter
 
     } else if (parameterName == "MNT_MODE") {
         ui.mountModeComboBox->setCurrentIndex(value.toInt());
+
+    } else if ( parameterName == "MNT_STAB_TILT" ){
+        ui.tiltStabilizeCheckBox->setChecked(value.toInt() == 1);
+    } else if ( parameterName == "MNT_STAB_PAN" ){
+        ui.panStabilizeCheckBox->setChecked(value.toInt() == 1);
+    } else if ( parameterName == "MNT_STAB_ROLL" ){
+        ui.rollStabilizeCheckBox->setChecked(value.toInt() == 1);
+
+    } else if ( parameterName == "MNT_RETRACT_X" ){
+        ui.retractXSpinBox->setValue(value.toInt());
+    } else if ( parameterName == "MNT_RETRACT_Y" ){
+        ui.retractYSpinBox->setValue(value.toInt());
+    } else if ( parameterName == "MNT_RETRACT_Z" ){
+        ui.retractZSpinBox->setValue(value.toInt());
+
+    } else if ( parameterName == "MNT_NEUTRAL_X" ){
+        ui.neutralXSpinBox->setValue(value.toInt());
+    } else if ( parameterName == "MNT_NEUTRAL_Y" ){
+        ui.neutralYSpinBox->setValue(value.toInt());
+    } else if ( parameterName == "MNT_NEUTRAL_Z" ){
+        ui.neutralZSpinBox->setValue(value.toInt());
+
+    } else if ( parameterName == "MNT_CONTROL_X" ){
+        ui.controlXSpinBox->setValue(value.toInt());
+    } else if ( parameterName == "MNT_CONTROL_Y" ){
+        ui.controlYSpinBox->setValue(value.toInt());
+    } else if ( parameterName == "MNT_CONTROL_Z" ){
+        ui.controlZSpinBox->setValue(value.toInt());
+
     }
     connectSignals();
 }
